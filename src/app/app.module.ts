@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
-import { DataTablesModule } from 'angular-datatables';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +30,8 @@ import { AdminGuardService } from './services/admin-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatSortModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,11 @@ import { ProductService } from './services/product.service';
     AppRoutingModule,
     FormsModule,
     CustomFormsModule,
-    DataTablesModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatSortModule,
     AngularFireModule.initializeApp(environment.fireConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -81,7 +86,8 @@ import { ProductService } from './services/product.service';
         path: 'admin/orders', component: AdminOrdersComponent,
         canActivate: [AuthGuardService, AdminGuardService]
       },
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [AngularFireAuth, AuthorizationService, AuthGuardService,
     UserService, AdminGuardService, CategoryService, ProductService],
