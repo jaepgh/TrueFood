@@ -32,6 +32,8 @@ import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatSortModule } from '@angular/material';
+import { ProductsFilterComponent } from './products/products-filter/products-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule,
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductsFilterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,7 @@ import { MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },
