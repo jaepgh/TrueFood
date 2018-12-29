@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  fireConfig: {
+    apiKey: 'AIzaSyBNxCLvea_SLOdGJIqmCd55oee99T4Ltdw',
+    authDomain: 'truefoodshop.firebaseapp.com',
+    databaseURL: 'https://truefoodshop.firebaseio.com',
+    projectId: 'truefoodshop',
+    storageBucket: 'truefoodshop.appspot.com',
+    messagingSenderId: '596127275290'
+  }
 };
 
 /*
