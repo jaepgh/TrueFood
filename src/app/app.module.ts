@@ -34,6 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatSortModule } from '@angular/material';
 import { ProductsFilterComponent } from './products/products-filter/products-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShopingCartService } from './services/shoping-cart.service';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     LoginComponent,
     ProductFormComponent,
     ProductsFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +97,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     BrowserAnimationsModule
   ],
   providers: [AngularFireAuth, AuthorizationService, AuthGuardService,
-    UserService, AdminGuardService, CategoryService, ProductService],
+    UserService, AdminGuardService, CategoryService, ProductService, ShopingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
