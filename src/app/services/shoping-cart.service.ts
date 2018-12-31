@@ -21,6 +21,19 @@ export class ShopingCartService {
       }));
   }
 
+  async emptyCart() {
+    const cartUid = await this.getOrCreateCartId();
+    this.db.object('/shopping-carts/' + cartUid + '/items/').remove();
+  }
+
+  async addToCart(product: Product) {
+    this.updateItemQuantity(product, 1);
+  }
+
+  async removeFromCart(product: Product) {
+    this.updateItemQuantity(product, -1);
+  }
+
   private createCart() {
     return this.db.list('/shopping-carts').push({
       dateCreated: new Date().getTime()
@@ -42,26 +55,23 @@ export class ShopingCartService {
     return this.db.object('/shopping-carts/' + cartUid + '/items/' + productId);
   }
 
-  async addToCart(product: Product) {
-    this.updateItemQuantity(product, 1);
-  }
-
-  async removeFromCart(product: Product) {
-    this.updateItemQuantity(product, -1);
-  }
-
   private async updateItemQuantity(product: Product, change: number) {
     const cartUid = await this.getOrCreateCartId();
     const items$ = this.getCartItem(cartUid, product.key);
 
     items$.valueChanges().pipe(take(1)).subscribe(item => {
-      items$.update({
-        title: product.title,
-        imageUrl: product.imageUrl,
-        price: product.price,
-        // @ts-ignore
-        quantity: item ? ((item.quantity) + change) : 1
-      });
+      // @ts-ignore
+      const quantity = item ? ((item.quantity) + change) : 1;
+      if (quantity === 0) {
+        items$.remove();
+      } else {
+        items$.update({
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price,
+          quantity: quantity
+        });
+      }
     });
   }
 }

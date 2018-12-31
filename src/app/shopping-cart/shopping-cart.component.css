@@ -1,0 +1,18 @@
+.thumb-col{
+    width: 15%;
+}
+.prod-col{
+    width: 40%;
+}
+.qty-col{
+    width: 30%;
+}
+.price-col{
+    width: 15%;
+}
+.thumgnail{
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background-size: cover;
+}
