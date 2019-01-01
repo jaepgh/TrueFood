@@ -36,6 +36,8 @@ import { ProductsFilterComponent } from './products/products-filter/products-fil
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ShopingCartService } from './services/shoping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { OrderService } from './services/order.service';
+import { ShoopingCartSummaryComponent } from './check-out/shooping-cart-summary/shooping-cart-summary.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     ProductFormComponent,
     ProductsFilterComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    ShoopingCartSummaryComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuardService] },
-      { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuardService] },
+      { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuardService] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService] },
       {
         path: 'admin/products/new', component: ProductFormComponent,
@@ -97,7 +100,8 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     BrowserAnimationsModule
   ],
   providers: [AngularFireAuth, AuthorizationService, AuthGuardService,
-    UserService, AdminGuardService, CategoryService, ProductService, ShopingCartService],
+    UserService, AdminGuardService, CategoryService, ProductService,
+    ShopingCartService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
