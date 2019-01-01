@@ -4,43 +4,45 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Product } from '../models/product';
 import { ShopingCartService } from '../services/shoping-cart.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[];
   category: string;
-  cart;
-  subscription: Subscription;
+  cart$: Observable<ShoppingCart>;
 
-  constructor(producService: ProductService, route: ActivatedRoute, private shopingCartService: ShopingCartService) {
-    producService.getAllProducts().pipe(switchMap(
-      products => {
-        this.products = products as Product[];
-        return route.queryParamMap;
-      }
-    )).subscribe(params => {
-      this.category = params.get('category');
-      this.filteredProducts = (this.category) ?
-        this.products.filter(product => product.category.toString() === this.category) : this.products;
-    });
+  constructor(private producService: ProductService, private route: ActivatedRoute, private shopingCartService: ShopingCartService) {
   }
 
   async ngOnInit() {
-    this.subscription = await this.shopingCartService.getCart()
-      .then(result => {
-        return result.subscribe(obj => {
-          return this.cart = obj;
-        });
-      });
+    this.cart$ = await this.shopingCartService.getCart()
+      .then(result => result);
+    this.populateProducts();
+
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  private applFilter() {
+    this.filteredProducts = (this.category) ?
+      this.products.filter(product => product.category.toString() === this.category) :
+      this.products;
+  }
+
+  private populateProducts() {
+    this.producService.getAllProducts().pipe(switchMap(
+      products => {
+        this.products = products as Product[];
+        return this.route.queryParamMap;
+      }
+    )).subscribe(params => {
+      this.category = params.get('category');
+      this.applFilter();
+    });
   }
 }
