@@ -38,6 +38,9 @@ import { ShopingCartService } from './services/shoping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { OrderService } from './services/order.service';
 import { ShoopingCartSummaryComponent } from './check-out/shooping-cart-summary/shooping-cart-summary.component';
+import { ShippingFormComponent } from './check-out/shipping-form/shipping-form.component';
+import { OrdersTableComponent } from './orders-table/orders-table.component';
+import { OrdersDetailComponent } from './orders-detail/orders-detail.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import { ShoopingCartSummaryComponent } from './check-out/shooping-cart-summary/
     ProductsFilterComponent,
     ProductCardComponent,
     ProductQuantityComponent,
-    ShoopingCartSummaryComponent
+    ShoopingCartSummaryComponent,
+    ShippingFormComponent,
+    OrdersTableComponent,
+    OrdersDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +85,7 @@ import { ShoopingCartSummaryComponent } from './check-out/shooping-cart-summary/
       { path: 'login', component: LoginComponent },
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuardService] },
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuardService] },
+      { path: 'my/orders/:id', component: OrdersDetailComponent, canActivate: [AuthGuardService] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService] },
       {
         path: 'admin/products/new', component: ProductFormComponent,

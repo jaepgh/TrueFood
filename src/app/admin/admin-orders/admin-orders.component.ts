@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from 'src/app/services/order.service';
+import { AuthorizationService } from 'src/app/services/authorization.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin-orders',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminOrdersComponent implements OnInit {
 
-  constructor() { }
+  orders$;
+  displayedColumns: string[];
+
+  constructor(private orderService: OrderService, private authService: AuthorizationService) {
+    this.authService.user$.pipe(take(1)).subscribe(user => this.orders$ = this.orderService.getAllOrders());
+    this.displayedColumns = ['customer', 'date', 'view'];
+  }
 
   ngOnInit() {
   }

@@ -1,0 +1,39 @@
+<div class="card" *ngIf="order">
+  <div class="card-body">
+    <h5 class="card-title">Order Summary</h5>
+    <div class="text-right"><b>Order placed on:</b> {{order.datePlaced | date}}</div>
+    <p class="card-text">A total of {{order.totalOrderItems}} item(s) were purchased.</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col" class="text-right">Price</th>
+          <th scope="col" class="text-right">Quantity</th>
+          <th scope="col" class="text-right">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.items">
+          <td>
+            <div class="row">
+              <img src={{item.product.imageUrl}} class="thumgnail">
+              <div class="pl-3">{{item.product.title}}</div>
+            </div>
+          </td>
+          <td class="text-right">{{item.product.price | currency:'USD':'symbol':'1.2-2'}}</td>
+          <td class="text-right">{{item.quantity}}</td>
+          <td class="text-right">{{item.totalPrice | currency:'USD':'symbol':'1.2-2'}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+          <th class="text-right">Total:</th>
+          <th class="text-right">{{order.totalOrderValue | currency:'USD':'symbol':'1.2-2'}}</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

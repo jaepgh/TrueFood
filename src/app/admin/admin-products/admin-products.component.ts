@@ -10,7 +10,6 @@ import { Product } from 'src/app/models/product';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
-  productsList: any[];
   subscription: Subscription;
 
   displayedColumns: string[] = ['title', 'price', 'edit'];
@@ -22,8 +21,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   constructor(private productService: ProductService) {
     this.subscription = this.productService.getAllProducts().
       subscribe(products => {
-        this.productsList = products;
-        this.dataSource = new MatTableDataSource(this.productsList);
+        this.dataSource = new MatTableDataSource(products as Product[]);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
