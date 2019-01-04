@@ -1,4 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+$primary-color: #08a648;
+$secondary-color: #08a6477e;
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.list-group-item.active{
+    background-color: $primary-color;
+    border-color: $primary-color;
+}
+.navbar>.container, .navbar>.container-fluid{
+    height: 61px;
+}
+
+.btn-secondary {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+}
+.btn-secondary:hover {
+    background-color: $primary-color;
+    border-color: $primary-color;
+}
+a.ng-star-inserted{
+    color: $primary-color;
+}
+button.mat-sort-header-button{
+    color: rgba(0,0,0,.87);
+    font-weight: bold;
+}
+.mat-focused .mat-form-field-label{ color: $primary-color!important; } 
+.mat-focused .mat-form-field-underline .mat-form-field-ripple{ background: $primary-color; }

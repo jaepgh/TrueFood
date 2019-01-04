@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-ligth bg-ligth" pb-5>
-  <div class="container">
-    <a class="navbar-brand" routerLink="/"><i class="fa fa-leaf pr-2" aria-hidden="true"></i>TrueFood Shop</a>
+  <div class="container border-bottom border-success">
+    <a class="navbar-brand text-success" routerLink="/"><i class="fa fa-leaf pr-2" aria-hidden="true"></i>TrueFood</a>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
 
@@ -8,8 +8,8 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" routerLink="/shopping-cart">
-            <i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>
-            <span class="badge badge-pill badge-primary" *ngIf="cart$ | async as cart">
+            <i class="fa fa-shopping-cart mr-2 text-success" aria-hidden="true"></i>
+            <span class="badge badge-pill badge-warning" *ngIf="cart$ | async as cart">
               {{cart.shoppingCartItemsCount}}
             </span>
           </a>

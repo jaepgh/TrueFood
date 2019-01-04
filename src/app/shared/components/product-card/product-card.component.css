@@ -4,3 +4,6 @@
 .card{
     margin-bottom: 30px;
 }
+.card-img-top{
+    min-height: 190px;
+}
