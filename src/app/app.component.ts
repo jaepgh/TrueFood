@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
-import { AuthGuardService } from './services/auth-guard.service';
-import { AuthorizationService } from './services/authorization.service';
+import { AuthGuardService } from 'shared/services/auth-guard.service';
+import { AuthorizationService } from 'shared/services/authorization.service';
 import { Router } from '@angular/router';
-import { UserService } from './services/user.service';
+import { UserService } from 'shared/services/user.service';
 
 @Component({
   selector: 'app-root',
