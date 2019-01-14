@@ -27,11 +27,14 @@ export class AuthorizationService {
 
   logout() {
     this.afAuth.auth.signOut();
-    this.router.navigateByUrl('/');
+    this.router.navigate(['/']);
   }
   get appUser$(): Observable<AppUser> {
     return this.user$.pipe(switchMap(user => {
-      return this.userService.getUser(user.uid).valueChanges();
+      if (user) {
+        return this.userService.getUser(user.uid).valueChanges();
+      }
+      return new Observable<AppUser>();
     }));
   }
 
